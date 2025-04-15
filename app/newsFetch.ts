@@ -10,10 +10,11 @@ export async function fetchNews(category:string, count:number) {
             const res = await fetch(
                 `https://newsapi.org/v2/top-headlines?country=us&pageSize=${count}&apiKey=${API_KEY}`
             );
+            console.log("res",res)
 
 
         const data = await res.json();
-        console.log("data",data.articles);
+        
         return data.articles;
 
 

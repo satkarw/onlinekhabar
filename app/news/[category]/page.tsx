@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 const categories = ["politics", "economics", "lifestyle", "travel", "sports"];
 
 export default async function CategoryPage({ params }: { params: { category: string } }) {
-    const { category } = params;
+    const { category } = await params;
 
     if (!categories.includes(category)) {
         return notFound();
@@ -16,6 +16,7 @@ export default async function CategoryPage({ params }: { params: { category: str
         const res = await fetch(`https://newsapi.org/v2/everything?q=${category}&apiKey=${API_KEY}`);
 
         if (!res.ok) throw new Error("Failed to fetch news");
+        
         const data = await res.json();
 
         return (
